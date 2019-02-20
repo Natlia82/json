@@ -26,9 +26,22 @@ $handle = fopen(__DIR__.'/file.csv', "r");
 }
 else {
   $file = __DIR__.'/file.csv';
+ $i = 0;
+ $tovar = '';
+  foreach ($list as $value) {
+    $i++;
+    if ($i==1) {
+    //  $string = $value.', ';
+      $sum=$value;
+    } else {
+    //  $string = $string.$value.', ';
+      $tovar = $tovar.$value.' ';
+    }
+  }
 
-  $string = implode(", ", $list);
-  file_put_contents($file, PHP_EOL.date('d.m.Y').', '.$string, FILE_APPEND | LOCK_EX);
+  //$string = implode(" ", $list);
+  file_put_contents($file, PHP_EOL.date('d.m.Y').', '.$sum.', '.$tovar, FILE_APPEND | LOCK_EX);
+  echo 'Добавлено в расходы. Сумма '.$sum.'. Товар '.$tovar ;
 }
 
  ?>
